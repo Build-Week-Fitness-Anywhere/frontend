@@ -1,27 +1,27 @@
-import React, { useEffect } from 'react'
+import React, { useEffect } from "react";
+import '../styles/instructorDash.css'
+import ClassList from "./ClassList";
 
-import ClassList from './ClassList'
-
-import { loadClass } from '../actions/classActions'
-import { connect } from 'react-redux';
+import { loadClass } from "../actions/classActions";
+import { connect } from "react-redux";
 
 function InstructorDashboard(props) {
+  useEffect(() => {
+    props.loadClass();
+  }, []);
 
-    useEffect(() => {
-        props.loadClass()
-    }, []);
-
-    return (
-        <div id="instructor-dashboard">
-            <ClassList />
-        </div>
-    )
+  return (
+      
+    <div className='classList'>
+      <ClassList />
+    </div>
+  );
 }
 
 function mapStateToProps(state) {
-    return {
-        ...state.class
-    }
+  return {
+    ...state.class,
+  };
 }
 
-export default connect(mapStateToProps, { loadClass })(InstructorDashboard)
+export default connect(mapStateToProps, { loadClass })(InstructorDashboard);

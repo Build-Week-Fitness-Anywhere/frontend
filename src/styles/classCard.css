@@ -1,0 +1,19 @@
+.class-card {
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(241, 241, 241);
+}
+
+.title {
+    font-size: 2rem;
+}
+
+.row-1 {
+ display: flex;
+ justify-content: space-around;
+}
+
+.row-2 {
+display: flex;
+justify-content: space-around;
+}
