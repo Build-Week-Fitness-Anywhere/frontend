@@ -7,9 +7,10 @@ import { BrowserRouter as Router } from "react-router-dom"
 import { applyMiddleware, createStore } from 'redux';
 import { Provider} from 'react-redux';
 import thunk from 'redux-thunk'
+import logger from 'redux-logger';
 import { primeReducer } from './reducers'
 
-const store = createStore(primeReducer, applyMiddleware(thunk) );
+const store = createStore(primeReducer, applyMiddleware(thunk, logger) );
 
 
 

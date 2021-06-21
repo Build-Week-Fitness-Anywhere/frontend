@@ -10,6 +10,9 @@ function App() {
     <div className='App'>
 
       <Switch>
+        <Route path='/instructor-dash'>
+          <InstructorDashboard></InstructorDashboard>
+        </Route>
         <Route path="/register">
           <Register></Register>
         </Route>
