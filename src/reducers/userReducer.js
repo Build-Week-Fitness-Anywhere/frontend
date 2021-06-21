@@ -1,11 +1,17 @@
-import React from 'react'
+import { USER_SET } from '../actions/userActions'
 
-function userReducer() {
-    return (
-        <div>
-            
-        </div>
-    )
+const initialState = {
+    name: "",
+    role: ""
+}
+
+function userReducer(state = initialState, action) {
+    switch (action.type) {
+        case (USER_SET):
+            return ({...action.payload})
+        default:
+            return state;
+    }
 }
 
 export {
