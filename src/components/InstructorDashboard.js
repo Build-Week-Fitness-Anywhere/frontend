@@ -8,6 +8,7 @@ import { connect } from "react-redux";
 function InstructorDashboard(props) {
   useEffect(() => {
     props.loadClass();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
