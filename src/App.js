@@ -17,7 +17,6 @@ function App() {
           <Login></Login>
         </Route>
       </Switch>
-      <InstructorDashboard />
      
      </div>
   );
