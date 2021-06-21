@@ -1,6 +1,7 @@
 import { React, useState, useEffect } from "react";
 import schema from "../validation/LogInSchema";
 import * as yup from "yup";
+import { Link } from "react-router-dom";
 
 const initialFormValues = {
   username: "",
@@ -14,7 +15,7 @@ const initialErrors = {
 
 const initialDisabled = true;
 
-export default function SignUp() {
+export default function Login() {
   const [formValues, setFormValues] = useState(initialFormValues);
   const [errors, setErrors] = useState(initialErrors);
   const [disabled, setDisabled] = useState(initialDisabled);
@@ -74,7 +75,7 @@ export default function SignUp() {
         ></input>
       </label>
       <button disabled={disabled}>Submit</button>
-      <p>Don't have an account? Click here to Sign Up.</p>
+      <p>Don't have an account? Click <Link to="/register">here</Link> to Sign Up.</p>
     </form>
   );
 }

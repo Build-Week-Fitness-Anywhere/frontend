@@ -1,7 +1,7 @@
 import { React, useState, useEffect } from "react";
 import schema from "../validation/SignUpSchema";
 import * as yup from "yup";
-import "../styles/signup.css";
+import {Link} from 'react-router-dom'
 
 const initialFormValues = {
   username: "",
@@ -17,7 +17,7 @@ const initialErrors = {
 
 const initialDisabled = true;
 
-export default function SignUp() {
+export default function Register() {
   const [formValues, setFormValues] = useState(initialFormValues);
   const [errors, setErrors] = useState(initialErrors);
   const [disabled, setDisabled] = useState(initialDisabled);
@@ -93,7 +93,7 @@ export default function SignUp() {
       </label>
       {errors.role}
       <button disabled={disabled}>Submit</button>
-      <p>Already have an account? Click here to Log In.</p>
+      <p>Already have an account? Click <Link to='/'>here</Link> to Log In.</p>
     </form>
   );
 }
