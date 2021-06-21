@@ -1,11 +1,22 @@
-import React from 'react'
+import {} from '../actions/classActions'
 
-function classReducer() {
-    return (
-        <div>
-            
-        </div>
-    )
+const initialState = {
+    classID: 0,
+    name: "",
+    date: "",
+    time: "",
+    duration: 0,
+    instructor: "",
+    type: "",
+    intensity: "",
+    location: ""
+}
+
+function classReducer(state = initialState, action) {
+    switch(action.type) {
+        default:
+            return state;
+    }
 }
 
 export {
