@@ -3,6 +3,7 @@ import './App.css';
 import Register from './components/RegisterForm';
 import Login from './components/LoginForm';
 import {Route, Switch, BrowserRouter as Router} from 'react-router-dom'
+import InstructorDashboard from './components/InstructorDashboard';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Login></Login>
         </Route>
       </Switch>
+      <InstructorDashboard />
      
      </div>
   );

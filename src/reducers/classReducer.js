@@ -1,19 +1,11 @@
-import {} from '../actions/classActions'
+import { CLASS_SET } from '../actions/classActions'
 
-const initialState = {
-    classID: 0,
-    name: "",
-    date: "",
-    time: "",
-    duration: 0,
-    instructor: "",
-    type: "",
-    intensity: "",
-    location: ""
-}
+const initialState = [];
 
 function classReducer(state = initialState, action) {
     switch(action.type) {
+        case (CLASS_SET):
+            return ([...action.payload]) 
         default:
             return state;
     }

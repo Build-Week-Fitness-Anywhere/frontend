@@ -1,8 +1,16 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
 import ClassList from './ClassList'
 
-function InstructorDashboard() {
+import { loadClass } from '../actions/classActions'
+import { connect } from 'react-redux';
+
+function InstructorDashboard(props) {
+
+    useEffect(() => {
+        props.loadClass()
+    }, []);
+
     return (
         <div id="instructor-dashboard">
             <ClassList />
@@ -10,6 +18,10 @@ function InstructorDashboard() {
     )
 }
 
-export {
-    InstructorDashboard
+function mapStateToProps(state) {
+    return {
+        ...state.class
+    }
 }
+
+export default connect(mapStateToProps, { loadClass })(InstructorDashboard)
