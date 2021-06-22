@@ -1,4 +1,6 @@
 import React, { useState } from 'react'
+import schema from "../validation/ClassSchema";
+import * as yup from "yup";
 
 const initialFormValues = {
     name: "Miyagi-Do Karate",
@@ -30,6 +32,26 @@ function EditClassForm() {
     const [errors, setErrors] = useState(errorValues);
     const [disabled, setDisabled] = useState(initialDisabled);
 
+    const checkSchema = (name, value) => {
+        yup
+      .reach(schema, name)
+      .validate(value)
+      .then(() => {
+        setErrors({
+          ...errors,
+          [name]: "",
+        });
+      }).catch((err) => {
+        setErrors({
+          ...errors,
+          [name]: err.errors[0],
+        });
+      });
+      schema.isValid(formValues).then((valid) => {
+        setDisabled(!valid);
+      });
+    }
+
     const handleChange = (evt) => {
         const { name, value, checked, type } = evt.target;
         const valueToUse = type === "checkbox" ? checked : value;
@@ -37,7 +59,9 @@ function EditClassForm() {
             ...formValues,
             [name]: valueToUse,
           });
-    }      
+        checkSchema(name, valueToUse);
+    }     
+
     return (
         <div>
             <form id="edit-class-form">
@@ -121,6 +145,7 @@ function EditClassForm() {
           name="location"
         ></input>
       </label>
+      <button disabled={disabled}>Edit Class</button>
     </form>        
     </div>
     )

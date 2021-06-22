@@ -39,10 +39,30 @@ const defaultData = [
     }
 ]
 
+const addClass = (item) => {
+    return ({type: CLASS_ADD, payload: item})
+}
+
+const editClass = (item) => {
+    return ((dispatch, getState) => {
+        let newClasses = getState().class;
+        newClasses = newClasses.filter((thing) => {
+            return (thing.id !== item.id );
+        })
+        newClasses = [
+            ...newClasses,
+            item
+        ]
+        dispatch({type: CLASS_SET, payload: newClasses});
+    })
+}
+
 const loadClass = () => {
     return {type: CLASS_SET, payload: defaultData}
 }
 
 export {
+    addClass,
+    editClass,
     loadClass
 }
