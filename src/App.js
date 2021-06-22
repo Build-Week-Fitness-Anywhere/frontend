@@ -4,7 +4,7 @@ import Register from './components/RegisterForm';
 import Login from './components/LoginForm';
 import {Route, Switch, BrowserRouter as Router} from 'react-router-dom'
 
-import { AddClassForm } from './components/AddClassForm';
+import AddClassForm from './components/AddClassForm';
 import { EditClassForm } from './components/EditClassForm';
 import InstructorDashboard from './components/InstructorDashboard';
 import ClientDashboard from './components/clientDashboard';
