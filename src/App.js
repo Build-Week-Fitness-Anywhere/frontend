@@ -7,6 +7,7 @@ import {Route, Switch, BrowserRouter as Router} from 'react-router-dom'
 import { AddClassForm } from './components/AddClassForm';
 import { EditClassForm } from './components/EditClassForm';
 import InstructorDashboard from './components/InstructorDashboard';
+import ClientDashboard from './components/clientDashboard';
 
 function App() {
   return (
@@ -18,6 +19,9 @@ function App() {
         </Route>
         <Route path="/class/edit" >
           <EditClassForm ></EditClassForm>
+        </Route>
+        <Route path='/client-dash'>
+          <ClientDashboard></ClientDashboard>
         </Route>
         <Route path='/instructor-dash'>
           <InstructorDashboard></InstructorDashboard>
