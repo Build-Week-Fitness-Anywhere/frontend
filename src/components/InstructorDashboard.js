@@ -9,8 +9,13 @@ import { connect } from "react-redux";
 
 function InstructorDashboard(props) {
   useEffect(() => {
-    props.loadClass();
-    props.loadUser();
+    if (!props.class || props.class.length === 0) {
+      console.log("loading class");
+      props.loadClass()
+    } else {
+      console.log(props.class);
+    };
+    if (!props.user) {props.loadUser()};
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

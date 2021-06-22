@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { useHistory } from 'react-router-dom'
 import schema from "../validation/ClassSchema";
 import * as yup from "yup";
 import { addClass } from '../actions/classActions'
@@ -8,7 +9,7 @@ const initialFormValues = {
     name: "",
     date: "",
     time: "",
-    duration: 0,
+    duration: "0",
     instructor: "",
     type: "",
     intensity: "",
@@ -32,11 +33,12 @@ function AddClassForm(props) {
     const [formValues, setFormValues] = useState(initialFormValues);
     const [errors, setErrors] = useState(errorValues);
     const [disabled, setDisabled] = useState(initialDisabled);
+    const { push } = useHistory();
 
     const addClick = (evt) => {
         evt.preventDefault();
-        console.log("Add Click Detected");
         props.addClass(formValues);
+        push("/instructor-dash");
     }
 
     const checkSchema = (name, value) => {
@@ -55,10 +57,6 @@ function AddClassForm(props) {
         });
       });
       schema.isValid(formValues).then((valid) => {
-        // if (!valid) {
-        //     console.log("invalid");
-        //     console.log(errorValues);
-        // }
         setDisabled(!valid);
       });
     }

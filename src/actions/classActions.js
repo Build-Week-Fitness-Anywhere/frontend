@@ -40,6 +40,7 @@ const defaultData = [
 ]
 
 const addClass = (item) => {
+    item.classID = Date.now();
     return ({type: CLASS_ADD, payload: item})
 }
 
@@ -58,7 +59,13 @@ const editClass = (item) => {
 }
 
 const loadClass = () => {
-    return {type: CLASS_SET, payload: defaultData}
+    return ((dispatch, getState) => {
+        const current = getState().class;
+        if (current.length === 0) {
+            dispatch({type: CLASS_SET, payload: defaultData});
+        }
+        // else do nothing
+    });
 }
 
 export {
