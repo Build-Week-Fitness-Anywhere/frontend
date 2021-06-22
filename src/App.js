@@ -14,6 +14,12 @@ function App() {
     <div className='App'>
 
       <Switch>
+      <Route path="/class/add" >
+          <AddClassForm ></AddClassForm>
+        </Route>
+        <Route path="/class/edit" >
+          <EditClassForm ></EditClassForm>
+        </Route>
         <Route path='/client-dash'>
           <ClientDashboard></ClientDashboard>
         </Route>
