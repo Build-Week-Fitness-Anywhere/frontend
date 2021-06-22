@@ -4,7 +4,7 @@ export const USER_LOADING = "USER_LOADING";
 export const USER_SET = "USER_SET";
 
 const defaultUser = {
-    name: "Daniel LaRouso",
+    username: "Daniel LaRouso",
     role: "Instructor",
     skip: true
 }

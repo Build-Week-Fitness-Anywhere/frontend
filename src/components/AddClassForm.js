@@ -1,12 +1,15 @@
 import React, { useState } from 'react'
+import { useHistory } from 'react-router-dom'
 import schema from "../validation/ClassSchema";
 import * as yup from "yup";
+import { addClass } from '../actions/classActions'
+import { connect } from 'react-redux';
 
 const initialFormValues = {
     name: "",
     date: "",
     time: "",
-    duration: 0,
+    duration: "0",
     instructor: "",
     type: "",
     intensity: "",
@@ -26,10 +29,17 @@ const errorValues = {
 
 const initialDisabled = true;
 
-function AddClassForm() {
+function AddClassForm(props) {
     const [formValues, setFormValues] = useState(initialFormValues);
     const [errors, setErrors] = useState(errorValues);
     const [disabled, setDisabled] = useState(initialDisabled);
+    const { push } = useHistory();
+
+    const addClick = (evt) => {
+        evt.preventDefault();
+        props.addClass(formValues);
+        push("/instructor-dash");
+    }
 
     const checkSchema = (name, value) => {
         yup
@@ -64,6 +74,7 @@ function AddClassForm() {
     return (
         <div>
             <form id="add-class-form">
+                {errorValues.name && <p>{errorValues.name}</p>}
                 <label>
                     Class Name
                     <input
@@ -74,6 +85,7 @@ function AddClassForm() {
                     name="name"
                     ></input>
                 </label>
+                {errorValues.date && <p>{errorValues.date}</p>}
                 <label>
                     Date
                     <input
@@ -84,6 +96,7 @@ function AddClassForm() {
                     name="date"
                     ></input>
                 </label>
+                {errorValues.time && <p>{errorValues.time}</p>}
                 <label>
                     Time
                     <input
@@ -94,6 +107,7 @@ function AddClassForm() {
                     name="time"
                     ></input>
                 </label>
+                {errorValues.duration && <p>{errorValues.duration}</p>}
                 <label>
                     Duration
                     <input
@@ -104,6 +118,7 @@ function AddClassForm() {
                     name="duration"
                     ></input>
                 </label>
+                {errorValues.instructor && <p>{errorValues.instructor}</p>}
                 <label>
                     Instructor
                     <input
@@ -114,6 +129,7 @@ function AddClassForm() {
                     name="instructor"
                     ></input>
                 </label>
+                {errorValues.type && <p>{errorValues.type}</p>}
                 <label>
                     Type
                     <input
@@ -124,6 +140,7 @@ function AddClassForm() {
                     name="type"
                     ></input>
                 </label>
+                {errorValues.intensity && <p>{errorValues.intensity}</p>}
                 <label>
                     Intensity
                     <input
@@ -134,6 +151,7 @@ function AddClassForm() {
                     name="intensity"
                     ></input>
                 </label>
+                {errorValues.location && <p>{errorValues.location}</p>}
                 <label>
                     Location
                     <input
@@ -144,12 +162,16 @@ function AddClassForm() {
                     name="location"
                     ></input>
                 </label>
-                <button disabled={disabled}>Add Class</button>
+                <button disabled={disabled} onClick={addClick} >Add Class</button>
             </form>
         </div>
     )
 }
 
-export {
-    AddClassForm
-}
+function mapStateToProps(state) {
+    return {
+      ...state.class,
+    };
+  }
+  
+export default connect(mapStateToProps, { addClass })(AddClassForm)
