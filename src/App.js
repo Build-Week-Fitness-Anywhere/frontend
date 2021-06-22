@@ -4,12 +4,16 @@ import Register from './components/RegisterForm';
 import Login from './components/LoginForm';
 import {Route, Switch, BrowserRouter as Router} from 'react-router-dom'
 import InstructorDashboard from './components/InstructorDashboard';
+import ClientDashboard from './components/clientDashboard';
 
 function App() {
   return (
     <div className='App'>
 
       <Switch>
+        <Route path='/client-dash'>
+          <ClientDashboard></ClientDashboard>
+        </Route>
         <Route path='/instructor-dash'>
           <InstructorDashboard></InstructorDashboard>
         </Route>
