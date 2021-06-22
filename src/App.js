@@ -23,12 +23,6 @@ function App() {
         <Route path='/client-dash'>
           <ClientDashboard></ClientDashboard>
         </Route>
-        <Route path="/class/add" >
-          <AddClassForm ></AddClassForm>
-        </Route>
-        <Route path="/class/edit" >
-          <EditClassForm ></EditClassForm>
-        </Route>
         <Route path='/instructor-dash'>
           <InstructorDashboard></InstructorDashboard>
         </Route>
