@@ -8,24 +8,26 @@ import AddClassForm from './components/AddClassForm';
 import { EditClassForm } from './components/EditClassForm';
 import InstructorDashboard from './components/InstructorDashboard';
 import ClientDashboard from './components/clientDashboard';
+import PrivateRoute from './utility/PrivateRoute'
 
 function App() {
   return (
     <div className='App'>
 
+    <Router>
       <Switch>
-      <Route path="/class/add" >
+      <PrivateRoute path="/class/add" >
           <AddClassForm ></AddClassForm>
-        </Route>
-        <Route path="/class/edit" >
+        </PrivateRoute>
+        <PrivateRoute path="/class/edit" >
           <EditClassForm ></EditClassForm>
-        </Route>
-        <Route path='/client-dash'>
+        </PrivateRoute>
+        <PrivateRoute path='/client-dash'>
           <ClientDashboard></ClientDashboard>
-        </Route>
-        <Route path='/instructor-dash'>
+        </PrivateRoute>
+        <PrivateRoute path='/instructor-dash'>
           <InstructorDashboard></InstructorDashboard>
-        </Route>
+        </PrivateRoute>
         <Route path="/register">
           <Register></Register>
         </Route>
@@ -33,6 +35,7 @@ function App() {
           <Login></Login>
         </Route>
       </Switch>
+    </Router>
      
      </div>
   );
