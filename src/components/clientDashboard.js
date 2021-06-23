@@ -1,7 +1,11 @@
-import { Fragment } from 'react'
+import React, { Fragment, useEffect } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { BellIcon, MenuIcon, XIcon } from '@heroicons/react/outline'
-import { NavLink } from 'react-router-dom'
+import { NavLink, Link } from 'react-router-dom'
+import ClassList from "./ClassList";
+import { loadClass } from "../actions/classActions";
+import { loadUser } from "../actions/userActions";
+import { connect } from "react-redux";
 
 const navigation = ['Dashboard']
 const profile = ['Sign out']
@@ -10,7 +14,20 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
-export default function ClientDashboard() {
+
+function ClientDashboard(props) {
+  useEffect(() => {
+    if (!props.class || props.class.length === 0) {
+      console.log("loading class");
+      props.loadClass()
+    } else {
+      console.log(props.class);
+    };
+    props.loadUser();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+  console.log(props)
+  
   return (
     <div>
       <Disclosure as="nav" className="bg-gray-800">
@@ -159,18 +176,22 @@ export default function ClientDashboard() {
 
       <header className="bg-white shadow">
         <div className="max-w-7 mx-auto py-6 px-4 sm:px-6 lg:px-8">
-          <h1 className="text-5xl font-bold text-gray-900 ml-24">Dashboard</h1>
+          <h1 className="text-5xl font-bold text-gray-900 ml-24">{`${props.user.username}'s`} Dashboard</h1>
         </div>
       </header>
       <main>
         <div className="mx-auto py-6 sm:px-6 lg:px-8">
-          {/* Replace with your content */}
-          <div className="px-4 py-6 sm:px-0">
-            <div className="border-4 border-dashed border-gray-200 rounded-lg h-96" />
-          </div>
-          {/* /End replace */}
+          <ClassList/>
         </div>
       </main>
     </div>
   )
 }
+
+function mapStateToProps(state) {
+  return {
+    ...state,
+  };
+}
+
+export default connect(mapStateToProps, { loadClass, loadUser })(ClientDashboard);
