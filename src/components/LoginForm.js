@@ -1,8 +1,12 @@
-import { React, useState, useEffect } from "react";
-import schema from "../validation/LogInSchema";
+import { React, useEffect, useState } from "react";
+import { connect } from 'react-redux'
+import { Link, useHistory } from 'react-router-dom'
+
 import * as yup from "yup";
-import { Link } from "react-router-dom";
+import schema from "../validation/LogInSchema";
 import styled from 'styled-components'
+
+import { loadUser } from '../actions/userActions'
 
 const BackGround = styled.div`
   background-image: url(https://www.gannett-cdn.com/presto/2020/11/19/USAT/f3d3d47e-1d51-4e2d-ae3c-39ce67a88d25-Dumbbells.png);
@@ -99,10 +103,11 @@ const initialErrors = {
 
 const initialDisabled = true;
 
-export default function Login() {
+function LoginForm(props) {
   const [formValues, setFormValues] = useState(initialFormValues);
   const [errors, setErrors] = useState(initialErrors);
   const [disabled, setDisabled] = useState(initialDisabled);
+  let { push } = useHistory();
 
   const change = (evt) => {
     const { name, value, checked, type } = evt.target;
@@ -124,20 +129,24 @@ export default function Login() {
         });
       });
 
+    schema.isValid(formValues).then((valid) => {
+      console.log(valid);
+      setDisabled(!valid);
+    });
+
     setFormValues({
       ...formValues,
       [name]: valueToUse,
     });
   };
 
-  useEffect(() => {
-    schema.isValid(formValues).then((valid) => {
-      setDisabled(!valid);
-    });
-  }, [formValues]);
+  const getUser = () => {
+      props.loadUser(formValues);
+      push("/dashboard");
+  }
 
-  return (
-    <BackGround>
+    return (
+    <BackGround id="background-image">
       <MainContainer>
         <StyledForm id='login-form'>
           <LoginContainer>
@@ -160,19 +169,27 @@ export default function Login() {
                 <input
                   type="text"
                   placeholder="Enter Password"
-                  value={formValues.username}
+                  value={formValues.password}
                   onChange={change}
-                  name="username"
+                  name="password"
                 ></input>
               </label>
             </FormGroup>
             <Buttons>
-              <button disabled={disabled}>Submit</button>
+              <button disabled={disabled} onClick={getUser} >Submit</button>
             </Buttons>
-          <p>Don't have an account? Click <Link to="/register">here</Link> to Sign Up.</p>
+          <p>"Don't have an account? Click" <Link to="/register">here</Link> to Sign Up.</p>
           </LoginContainer>
         </StyledForm>
       </MainContainer>
     </BackGround>
   );
 }
+
+function mapStateToProps(state) {
+    return {
+        ...state
+    }
+}
+
+export default connect(mapStateToProps, { loadUser })(LoginForm);
