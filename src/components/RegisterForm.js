@@ -12,6 +12,7 @@ const MainContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  text-align: center;
   height: 100vh;
 `;
 
@@ -31,6 +32,7 @@ const LoginContainer = styled.div`
         background: none;
         border: none;
         outline: none;
+        width: 200px
     }
     h2 {
         color: black;

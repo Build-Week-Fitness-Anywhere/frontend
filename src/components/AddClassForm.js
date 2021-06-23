@@ -4,6 +4,53 @@ import schema from "../validation/ClassSchema";
 import * as yup from "yup";
 import { addClass } from '../actions/classActions'
 import { connect } from 'react-redux';
+import styled from 'styled-components'
+
+const BackGround = styled.div`
+    background-image: url(https://cdn.hipwallpaper.com/i/78/3/OWVH9P.jpg);
+    background-repeat: no-repeat;
+    background-size: 2200px 100vh;;
+    
+    
+`
+
+const FormGroup = styled.div`
+	color: #D92344;
+    display: block;
+	width: 300px;
+	margin: 50px auto;
+`;
+
+const Label = styled.label`
+    size: 100px;
+	margin-bottom: 0.5em;
+	color: #F2F2F2;
+    display: block;
+`;
+
+
+const Input = styled.input`
+	padding: 0.5em;
+	color: #F2F2F2;
+	background: #405059;
+	border: none;
+	border-radius: 3px;
+	width: 100%;
+	margin-bottom: 0.5em;
+    &:hover {
+        background-image: linear-gradient(to bottom, #F2F2F2, #BF213E);
+`;
+const Button = styled.button`
+    display:inline-block;
+    padding: 10px 15px;
+    border-radius: 8px;
+    background-color: #F2F2F2;
+    cursor:pointer;
+    font-weight:500;
+    width:150px;
+    &:hover {
+        background-image: linear-gradient(to bottom, #F2F2F2, #BF213E);
+`
 
 const initialFormValues = {
     name: "",
@@ -73,97 +120,118 @@ function AddClassForm(props) {
       
     return (
         <div>
+          <BackGround>
             <form id="add-class-form">
+              <FormGroup>
                 {errorValues.name && <p>{errorValues.name}</p>}
-                <label>
+                
+                <Label>
                     Class Name
-                    <input
+                    <Input
                     type="text"
                     placeholder="Class Name"
                     value={formValues.name}
                     onChange={handleChange}
                     name="name"
-                    ></input>
-                </label>
+                    ></Input>
+                </Label>
+                </FormGroup>
+                <FormGroup>
                 {errorValues.date && <p>{errorValues.date}</p>}
-                <label>
+                <Label>
                     Date
-                    <input
+                    <Input
                     type="text"
                     placeholder="Day of Class"
                     value={formValues.date}
                     onChange={handleChange}
                     name="date"
-                    ></input>
-                </label>
+                    ></Input>
+                </Label>
+                </FormGroup>
+                <FormGroup>
                 {errorValues.time && <p>{errorValues.time}</p>}
-                <label>
+                <Label>
                     Time
-                    <input
+                    <Input
                     type="text"
                     placeholder="Time of Class"
                     value={formValues.time}
                     onChange={handleChange}
                     name="time"
-                    ></input>
-                </label>
+                    ></Input>
+                </Label>
+                </FormGroup>
+                <FormGroup>
                 {errorValues.duration && <p>{errorValues.duration}</p>}
-                <label>
+                <Label>
                     Duration
-                    <input
+                    <Input
                     type="text"
                     placeholder="Duration"
                     value={formValues.duration}
                     onChange={handleChange}
                     name="duration"
-                    ></input>
-                </label>
+                    ></Input>
+                </Label>
+                </FormGroup>
+                <FormGroup>
                 {errorValues.instructor && <p>{errorValues.instructor}</p>}
-                <label>
+                <Label>
                     Instructor
-                    <input
+                    <Input
                     type="text"
                     placeholder="Instructor"
                     value={formValues.instructor}
                     onChange={handleChange}
                     name="instructor"
-                    ></input>
-                </label>
+                    ></Input>
+                </Label>
+                </FormGroup>
+                <FormGroup>
                 {errorValues.type && <p>{errorValues.type}</p>}
-                <label>
+                <Label>
                     Type
-                    <input
+                    <Input
                     type="text"
                     placeholder="Type of Class"
                     value={formValues.type}
                     onChange={handleChange}
                     name="type"
-                    ></input>
-                </label>
+                    ></Input>
+                </Label>
+                </FormGroup>
+                <FormGroup>
                 {errorValues.intensity && <p>{errorValues.intensity}</p>}
-                <label>
+                <Label>
                     Intensity
-                    <input
+                    <Input
                     type="text"
                     placeholder="Intensity of Class"
                     value={formValues.intensity}
                     onChange={handleChange}
                     name="intensity"
-                    ></input>
-                </label>
+                    ></Input>
+                </Label>
+                </FormGroup>
+                <FormGroup>
                 {errorValues.location && <p>{errorValues.location}</p>}
-                <label>
+                <Label>
                     Location
-                    <input
+                    <Input
                     type="text"
                     placeholder="Where is the class?"
                     value={formValues.location}
                     onChange={handleChange}
                     name="location"
-                    ></input>
-                </label>
-                <button disabled={disabled} onClick={addClick} >Add Class</button>
+                    ></Input>
+                </Label>
+                </FormGroup>
+                <FormGroup>
+                <Button disabled={disabled} onClick={addClick} >Add Class</Button>
+                </FormGroup>
             </form>
+            </BackGround>
         </div>
     )
 }
