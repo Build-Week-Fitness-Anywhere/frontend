@@ -1,8 +1,11 @@
 import { React, useState, useEffect } from "react";
+import { connect } from 'react-redux'
 import schema from "../validation/SignUpSchema";
 import * as yup from "yup";
 import {Link} from 'react-router-dom'
 import styled from 'styled-components'
+
+import { saveUser } from '../actions/userActions'
 
 const BackGround = styled.div`
   background-image: url(https://i.pinimg.com/originals/c3/4e/24/c34e24f68f1c21a28e0ebd5382d444bc.jpg);
@@ -99,7 +102,7 @@ const initialErrors = {
 
 const initialDisabled = true;
 
-export default function Register() {
+function RegisterForm(props) {
   const [formValues, setFormValues] = useState(initialFormValues);
   const [errors, setErrors] = useState(initialErrors);
   const [disabled, setDisabled] = useState(initialDisabled);
@@ -129,6 +132,10 @@ export default function Register() {
       [name]: valueToUse,
     });
   };
+
+  const registerUser = () => {
+    props.saveUser(formValues);
+  }
 
   useEffect(() => {
     schema.isValid(formValues).then((valid) => {
@@ -183,7 +190,7 @@ export default function Register() {
                 </select>
               </label>
               {errors.role}
-              <button disabled={disabled}>Submit</button>
+              <button disabled={disabled} onClick={registerUser}>Submit</button>
               <p>Already have an account? Click <Link to='/'>here</Link> to Log In.</p>
             </FormGroup>
           </LoginContainer>
@@ -192,3 +199,11 @@ export default function Register() {
     </BackGround>
   );
 }
+
+function mapStateToProps(state) {
+    return {
+        ...state
+    }
+}
+
+export default connect(mapStateToProps, { saveUser })(RegisterForm);
