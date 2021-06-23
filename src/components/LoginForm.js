@@ -142,8 +142,9 @@ function LoginForm(props) {
     });
   };
 
-  const getUser = () => {
-      props.user.loadUser(formValues);
+  const getUser = (evt) => {
+      evt.preventDefault();
+      props.loadUser(formValues);
       push("/dashboard");
   }
 

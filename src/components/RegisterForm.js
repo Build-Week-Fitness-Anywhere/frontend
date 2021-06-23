@@ -1,5 +1,7 @@
 import { React, useState, useEffect } from "react";
+import { useHistory } from 'react-router-dom'
 import { connect } from 'react-redux'
+
 import schema from "../validation/SignUpSchema";
 import * as yup from "yup";
 import {Link} from 'react-router-dom'
@@ -106,6 +108,7 @@ function RegisterForm(props) {
   const [formValues, setFormValues] = useState(initialFormValues);
   const [errors, setErrors] = useState(initialErrors);
   const [disabled, setDisabled] = useState(initialDisabled);
+  let { push } = useHistory();
 
   const change = (evt) => {
     const { name, value, checked, type } = evt.target;
@@ -133,8 +136,10 @@ function RegisterForm(props) {
     });
   };
 
-  const registerUser = () => {
+  const registerUser = (evt) => {
+    evt.preventDefault();
     props.saveUser(formValues);
+    push("/");
   }
 
   useEffect(() => {
