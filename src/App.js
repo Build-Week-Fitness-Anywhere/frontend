@@ -22,7 +22,7 @@ function App() {
         <PrivateRoute path="/class/edit" >
           <EditClassForm ></EditClassForm>
         </PrivateRoute>
-        <PrivateRoute path='/client-dash'>
+        <PrivateRoute path='/dashboard'>
           <ClientDashboard></ClientDashboard>
         </PrivateRoute>
         <PrivateRoute path='/instructor-dash'>
