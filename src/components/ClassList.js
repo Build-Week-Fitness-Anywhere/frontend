@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import '../styles/classList.css'
-import { ClassCard } from './classCard'
+import ClassCard from './classCard'
 
 function ClassList(props) {
     return (

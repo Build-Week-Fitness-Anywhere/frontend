@@ -1,22 +1,28 @@
 import React, { Fragment, useEffect } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { BellIcon, MenuIcon, XIcon } from '@heroicons/react/outline'
-import { NavLink, Link } from 'react-router-dom'
+import { NavLink, useHistory } from 'react-router-dom'
 import ClassList from "./ClassList";
-import { loadClass } from "../actions/classActions";
+import { addClass, loadClass } from "../actions/classActions";
 import { loadUser } from "../actions/userActions";
 import { connect } from "react-redux";
+import '../styles/dashboard.css'
 
 const navigation = ['Dashboard']
 const profile = ['Sign out']
-
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
 
 function ClientDashboard(props) {
-  useEffect(() => {
+  let { push } = useHistory();
+
+  function addClassClick() {
+    push("/class/add");
+  }
+  
+    useEffect(() => {
     if (!props.class || props.class.length === 0) {
       props.loadClass()
     } else {
@@ -45,13 +51,12 @@ function ClientDashboard(props) {
                           <NavLink className="text-gray-300 hover:bg-gray-700 hover:text-white px-6 py-2 rounded-md text-3xl font-medium active:bg-red-500" to='/client-dash'>
                             Dashboard
                           </NavLink>
+                          {props.user.role === 'instructor' && <button className='text-gray-300 hover:bg-gray-700 hover:text-white px-6 py-2 rounded-md text-3xl font-medium active:bg-red-500' onClick={addClassClick}>Add Class</button> }
                     </div>
                   </div>
                 </div>
                 <div className="hidden md:block">
                   <div className="ml-4 flex items-center md:ml-6">
-
-                    {/* Profile dropdown */}
                     <Menu as="div" className="ml-3 relative">
                       {({ open }) => (
                         <>
@@ -191,4 +196,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, { loadClass, loadUser })(ClientDashboard);
+export default connect(mapStateToProps, { addClass, loadClass, loadUser })(ClientDashboard);
