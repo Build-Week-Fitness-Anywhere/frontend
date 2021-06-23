@@ -6,7 +6,7 @@ import styled from 'styled-components';
 const BackGround = styled.div`
     background-image: url(https://i.pinimg.com/originals/96/6a/7b/966a7b0fa51a0e145aa6b2fe8cd56923.jpg);
     background-repeat: no-repeat;
-    background-size: 2250px 100vh;
+    background-size: 2200px 100vh;
     
     
 `
