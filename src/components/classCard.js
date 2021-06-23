@@ -7,7 +7,7 @@ function ClassCard(props) {
     <div className="class-card">
       <p className="title">Class: {item.name}</p>
       <div className="row-1">
-        <p>Instructor: {item.instructor}</p>
+        <p>Instructor: {item.instructor.username}</p>
         <p>
           When: {item.date} {item.time}
         </p>

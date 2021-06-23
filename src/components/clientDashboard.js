@@ -18,14 +18,12 @@ function classNames(...classes) {
 function ClientDashboard(props) {
   useEffect(() => {
     if (!props.class || props.class.length === 0) {
-      console.log("loading class");
       props.loadClass()
     } else {
       console.log(props.class);
     };
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  console.log(props)
   
   return (
     <div>
