@@ -45,6 +45,7 @@ export const CLASS_EDIT = "CLASS_EDIT";
 const addClass = (item) => {
     return ((dispatch) => {
         item.classID = Date.now();
+        console.log(item);
         axiosWithAuth.get("https://fittnesslambda.herokuapp.com/api/classes/", item)
             .then((resp) => {
                 console.log(resp.data);
