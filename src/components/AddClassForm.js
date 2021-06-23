@@ -59,7 +59,6 @@ const initialFormValues = {
     date: "",
     time: "",
     duration: "0",
-    instructor: "",
     type: "",
     intensity: "",
     location: ""    
@@ -70,7 +69,6 @@ const errorValues = {
     date: "",
     time: "",
     duration: "",
-    instructor: "",
     type: "",
     intensity: "",
     location: ""    
@@ -87,7 +85,7 @@ function AddClassForm(props) {
     const addClick = (evt) => {
         evt.preventDefault();
         props.addClass(formValues);
-        push("/instructor-dash");
+        push("/dashboard");
     }
 
     const checkSchema = (name, value) => {

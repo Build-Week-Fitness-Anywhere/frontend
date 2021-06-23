@@ -44,8 +44,8 @@ export const CLASS_EDIT = "CLASS_EDIT";
 
 const addClass = (item) => {
     return ((dispatch) => {
-        console.log(item);
         const neoClass = {
+            date: item.date,
             name: item.name,
             type: item.type,
             start_time: item.time,
@@ -55,12 +55,12 @@ const addClass = (item) => {
             attendees: 0,
             max_size: 10
         }
-        axiosWithAuth().post("/api/classes/", neoClass)
+        axiosWithAuth().post("/api/classes", neoClass)
             .then((resp) => {
                 console.log(resp.data);
+                dispatch({type: CLASS_ADD, payload: resp.data});
             }).catch((err) => console.log(err));
     
-        dispatch({type: CLASS_ADD, payload: item})
         })
 }
 
