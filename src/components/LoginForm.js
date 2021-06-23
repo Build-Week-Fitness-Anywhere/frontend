@@ -1,4 +1,4 @@
-import { React, useEffect, useState } from "react";
+import { React, useState } from "react";
 import { connect } from 'react-redux'
 import { Link, useHistory } from 'react-router-dom'
 
@@ -142,7 +142,8 @@ function LoginForm(props) {
     });
   };
 
-  const getUser = () => {
+  const getUser = (evt) => {
+      evt.preventDefault();
       props.loadUser(formValues);
       push("/dashboard");
   }
