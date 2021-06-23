@@ -7,6 +7,7 @@ import { addClass, loadClass } from "../actions/classActions";
 import { loadUser } from "../actions/userActions";
 import { connect } from "react-redux";
 import '../styles/dashboard.css'
+import { logout } from '../actions/userActions';
 
 const navigation = ['Dashboard']
 const profile = ['Sign out']
@@ -17,6 +18,11 @@ function classNames(...classes) {
 
 function ClientDashboard(props) {
   let { push } = useHistory();
+
+  function logoutClick() {
+    props.logout()
+    push('/')
+  }
 
   function addClassClick() {
     push("/class/add");
@@ -82,23 +88,21 @@ function ClientDashboard(props) {
                           >
                             <Menu.Items
                               static
-                              className="origin-top-right absolute right-0 mt-2 w-60 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
+                              className="origin-top-right absolute right-0 mt-2 w-60 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none "
                             >
-                              {profile.map((item) => (
-                                <Menu.Item key={item}>
+                                <Menu.Item className='cursor-pointer ml-3'>
                                   {({ active }) => (
-                                    <a
-                                      href="#"
+                                    <p
+                                      onClick={logoutClick}
                                       className={classNames(
                                         active ? 'bg-gray-100' : '',
-                                        'block px-4 py-2 text-l text-gray-700'
+                                        'block px-4 py-2 text-l text-gray-700 '
                                       )}
                                     >
-                                      {item}
-                                    </a>
+                                      Logout
+                                    </p>
                                   )}
                                 </Menu.Item>
-                              ))}
                             </Menu.Items>
                           </Transition>
                         </>
@@ -196,4 +200,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, { addClass, loadClass, loadUser })(ClientDashboard);
+export default connect(mapStateToProps, { addClass, loadClass, loadUser, logout })(ClientDashboard);
