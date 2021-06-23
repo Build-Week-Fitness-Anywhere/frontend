@@ -6,6 +6,8 @@ import ClassList from "./ClassList";
 import { loadClass } from "../actions/classActions";
 import { loadUser } from "../actions/userActions";
 import { connect } from "react-redux";
+import '../styles/dashboard.css'
+import { useHistory } from 'react-router-dom';
 
 const navigation = ['Dashboard']
 const profile = ['Sign out']
@@ -26,6 +28,12 @@ function ClientDashboard(props) {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   console.log(props)
+
+  let { push } = useHistory()
+
+  const addClassClick = () => {
+    push('/class/add')
+  }
   
   return (
     <div>
@@ -47,13 +55,12 @@ function ClientDashboard(props) {
                           <NavLink className="text-gray-300 hover:bg-gray-700 hover:text-white px-6 py-2 rounded-md text-3xl font-medium active:bg-red-500" to='/client-dash'>
                             Dashboard
                           </NavLink>
+                          {props.user.role === 'instructor' && <button className='text-gray-300 hover:bg-gray-700 hover:text-white px-6 py-2 rounded-md text-3xl font-medium active:bg-red-500' onClick={addClassClick}>Add Class</button> }
                     </div>
                   </div>
                 </div>
                 <div className="hidden md:block">
                   <div className="ml-4 flex items-center md:ml-6">
-
-                    {/* Profile dropdown */}
                     <Menu as="div" className="ml-3 relative">
                       {({ open }) => (
                         <>
