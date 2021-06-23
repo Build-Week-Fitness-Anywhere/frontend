@@ -6,7 +6,6 @@ import {Route, Switch, BrowserRouter as Router} from 'react-router-dom'
 
 import AddClassForm from './components/AddClassForm';
 import { EditClassForm } from './components/EditClassForm';
-import InstructorDashboard from './components/InstructorDashboard';
 import ClientDashboard from './components/clientDashboard';
 import PrivateRoute from './utility/PrivateRoute'
 
@@ -24,9 +23,6 @@ function App() {
         </PrivateRoute>
         <PrivateRoute path='/dashboard'>
           <ClientDashboard></ClientDashboard>
-        </PrivateRoute>
-        <PrivateRoute path='/instructor-dash'>
-          <InstructorDashboard></InstructorDashboard>
         </PrivateRoute>
         <Route path="/register">
           <Register></Register>
