@@ -16,6 +16,7 @@ const MainContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  text-align: center;
   height: 100vh;
 `;
 
@@ -75,6 +76,7 @@ const FormGroup = styled.div`
         padding: 10px 15px;
         background-color: #F8F8F8;
         border-radius: 8px;
+        width: 200px;
         transition: 0.4s;
         &:focus {
             box-shadow: 0px 0px 3px rgba(0,0,0,0.2);
