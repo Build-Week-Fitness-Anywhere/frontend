@@ -1,12 +1,12 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import '../styles/classList.css'
-import { ClassCard } from './classCard'
+import ClassCard from './classCard'
 
 function ClassList(props) {
     return (
         <div id="class-list" name="class-list" className="class-list">
-            {props.class.map((item) => { return <ClassCard class={item} key={item.classID} /> })}
+            {props.class.map((item) => { return <ClassCard class={item} key={item.class_id} /> })}
         </div>
     )
 }

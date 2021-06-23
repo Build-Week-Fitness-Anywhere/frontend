@@ -132,7 +132,6 @@ function LoginForm(props) {
       });
 
     schema.isValid(formValues).then((valid) => {
-      console.log(valid);
       setDisabled(!valid);
     });
 

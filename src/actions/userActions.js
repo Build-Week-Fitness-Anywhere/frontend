@@ -15,16 +15,21 @@ const loadUser = (user = defaultUser) => {
     return ((dispatch) => {
         axios.post("https://fittnesslambda.herokuapp.com/api/auth/login", user)
             .then((resp) => {
-                console.log(resp.data);
                 const data = resp.data;
                 const neoUser = {
                     username: user.username,
                     role: data.role
                 }
                 localStorage.setItem("token", data.token)
-                alert(user.username + " " + data.role + " " + data.token)
                 dispatch({type: USER_SET, payload: neoUser});
             }).catch((err) => alert(err));
+    })
+}
+
+const logout = () => {
+    return ((dispatch) => {
+        dispatch({type: USER_SET, defaultUser});
+        localStorage.removeItem("token");
     })
 }
 
@@ -33,7 +38,6 @@ const saveUser = (data) => {
 
         axios.post("https://fittnesslambda.herokuapp.com/api/auth/register", data)
             .then((resp) => {
-                console.log(resp.data);
                 dispatch({type: IGNORE_EVENT, payload: resp.data})
             }).catch((err) => alert(err));
     })
@@ -41,5 +45,6 @@ const saveUser = (data) => {
 
 export {
     loadUser,
+    logout,
     saveUser
 }

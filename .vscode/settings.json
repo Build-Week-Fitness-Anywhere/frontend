@@ -3,6 +3,9 @@
         "Bundy",
         "Larouso",
         "Miyagi",
-        "Smurfette"
+        "Smurfette",
+        "headlessui",
+        "heroicons",
+        "webfonts"
     ]
 }
