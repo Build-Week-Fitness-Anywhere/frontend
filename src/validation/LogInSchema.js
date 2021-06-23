@@ -6,5 +6,5 @@ export default yup.object().shape({
     .required("Username is required."),
     password: yup
     .string()
-    .required("Username is required."),
+    .required("Password is required."),
 })
