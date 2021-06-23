@@ -44,9 +44,18 @@ export const CLASS_EDIT = "CLASS_EDIT";
 
 const addClass = (item) => {
     return ((dispatch) => {
-        item.classID = Date.now();
         console.log(item);
-        axiosWithAuth.get("https://fittnesslambda.herokuapp.com/api/classes/", item)
+        const neoClass = {
+            name: item.name,
+            type: item.type,
+            start_time: item.time,
+            duration: item.duration,
+            level: item.intensity,
+            location: item.location,
+            attendees: 0,
+            max_size: 10
+        }
+        axiosWithAuth().post("/api/classes/", neoClass)
             .then((resp) => {
                 console.log(resp.data);
             }).catch((err) => console.log(err));

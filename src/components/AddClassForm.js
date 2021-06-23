@@ -39,6 +39,7 @@ const Input = styled.input`
 	margin-bottom: 0.5em;
     &:hover {
         background-image: linear-gradient(to bottom, #F2F2F2, #BF213E);
+    }
 `;
 const Button = styled.button`
     display:inline-block;
@@ -50,6 +51,7 @@ const Button = styled.button`
     width:150px;
     &:hover {
         background-image: linear-gradient(to bottom, #F2F2F2, #BF213E);
+    }
 `
 
 const initialFormValues = {
@@ -172,19 +174,6 @@ function AddClassForm(props) {
                     value={formValues.duration}
                     onChange={handleChange}
                     name="duration"
-                    ></Input>
-                </Label>
-                </FormGroup>
-                <FormGroup>
-                {errorValues.instructor && <p>{errorValues.instructor}</p>}
-                <Label>
-                    Instructor
-                    <Input
-                    type="text"
-                    placeholder="Instructor"
-                    value={formValues.instructor}
-                    onChange={handleChange}
-                    name="instructor"
                     ></Input>
                 </Label>
                 </FormGroup>
