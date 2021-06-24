@@ -52,7 +52,7 @@ const Button = styled.button`
         background-image: linear-gradient(to bottom, #F2F2F2, #BF213E);
 `
 
-const initialFormValues = {
+/* const initialFormValues = {
     name: "Miyagi-Do Karate",
     date: "today",
     time: "sometime",
@@ -62,7 +62,7 @@ const initialFormValues = {
     intensity: "moderate",
     location: "Miyagi Dojo"    
 
-}
+} */
 
 const errorValues = {
     name: "",
@@ -78,7 +78,10 @@ const errorValues = {
 const initialDisabled = true;
 
 function EditClassForm(props) {
-    const [formValues, setFormValues] = useState(initialFormValues);
+    const currentClass = props.class.classList.filter((item) => {
+      return (item.class_id === props.class.currentClass);
+    });
+    const [formValues, setFormValues] = useState(currentClass[0]);
     const [errors, setErrors] = useState(errorValues);
     const [disabled, setDisabled] = useState(initialDisabled);
     let { push } = useHistory()

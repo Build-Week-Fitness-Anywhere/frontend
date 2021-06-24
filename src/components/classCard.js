@@ -5,6 +5,7 @@ import { useHistory } from 'react-router-dom';
 import { setClass } from "../actions/classActions";
 
 function ClassCard(props) {
+  console.log(props.class);
   const item = props.class;
 
   let { push } = useHistory()
@@ -13,7 +14,8 @@ function ClassCard(props) {
     
   }
 
-  const editClassClick = () => {
+  const editClassClick = (evt) => {
+    evt.preventDefault();
     props.setClass(item.class_id);
     push('/class/edit');
   }
