@@ -2,6 +2,9 @@ import React, { useState } from 'react'
 import schema from "../validation/ClassSchema";
 import * as yup from "yup";
 import styled from 'styled-components';
+import { connect } from 'react-redux';
+import { useHistory } from 'react-router-dom';
+import { editClass } from '../actions/classActions';
 
 const BackGround = styled.div`
     background-image: url(https://i.pinimg.com/originals/96/6a/7b/966a7b0fa51a0e145aa6b2fe8cd56923.jpg);
@@ -74,10 +77,11 @@ const errorValues = {
 
 const initialDisabled = true;
 
-function EditClassForm() {
+function EditClassForm(props) {
     const [formValues, setFormValues] = useState(initialFormValues);
     const [errors, setErrors] = useState(errorValues);
     const [disabled, setDisabled] = useState(initialDisabled);
+    let { push } = useHistory()
 
     const checkSchema = (name, value) => {
         yup
@@ -103,16 +107,23 @@ function EditClassForm() {
         const { name, value, checked, type } = evt.target;
         const valueToUse = type === "checkbox" ? checked : value;
         setFormValues({
+            class_id: props.class[0],
             ...formValues,
             [name]: valueToUse,
           });
         checkSchema(name, valueToUse);
     }     
 
+    const submit = (e) => {
+      e.preventDefault()
+      props.editClass(formValues)
+      push('/dashboard')
+    }
+
     return (
         <div>
           <BackGround>
-            <form id="edit-class-form">
+            <form id="edit-class-form" onSubmit={submit}>
               <FormGroup>
                 <Label>
                   Class Name
@@ -202,6 +213,10 @@ function EditClassForm() {
     )
 }
 
-export {
-    EditClassForm
+function mapStateToProps(state) {
+    return {
+        ...state
+    }
 }
+
+export default connect(mapStateToProps, { editClass } )(EditClassForm)

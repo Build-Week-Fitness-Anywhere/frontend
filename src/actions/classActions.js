@@ -5,6 +5,11 @@ export const CLASS_SET = "CLASS_SET";
 export const CLASS_ADD = "CLASS_ADD";
 export const CLASS_DELETE = "CLASS_DELETE";
 export const CLASS_EDIT = "CLASS_EDIT";
+export const SET_CURRENT_CLASS = 'SET_CURRENT_CLASS'
+
+export const setClass = (id) => {
+    return({type:SET_CURRENT_CLASS, payload: id})
+}
 
 // const defaultData = [
 //     {
@@ -76,8 +81,11 @@ const editClass = (item) => {
         }
         let newClasses = getState().class;
         
-       axiosWithAuth().put(`/api/classes/:class_id/${item.class_id}`, neoClass)
+        console.log(item.class_id);
+        const destString = "/api/classes/:class_id/" + item.class_id
+        axiosWithAuth().put(destString, neoClass)
             .then((resp) => {
+                console.log("response detected");
                 newClasses = newClasses.filter((thing) => {
                     return (thing.id !== item.id );
                 });
