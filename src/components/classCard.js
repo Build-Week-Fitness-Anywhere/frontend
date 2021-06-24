@@ -14,8 +14,8 @@ function ClassCard(props) {
   }
 
   const editClassClick = () => {
-    props.setClass(item.class_id)
-    push('/class/edit')
+    props.setClass(item.class_id);
+    push('/class/edit');
   }
 
   const joinClassClick = () => {

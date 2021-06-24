@@ -6,7 +6,7 @@ import ClassCard from './classCard'
 function ClassList(props) {
     return (
         <div id="class-list" name="class-list" className="class-list">
-            {props.class.map((item, idx) => { 
+            {props.class.ClassList.map((item, idx) => { 
                 if(idx > 0) {
                     return <ClassCard class={item} key={item.class_id} />
                 } 

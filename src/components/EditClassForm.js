@@ -107,7 +107,6 @@ function EditClassForm(props) {
         const { name, value, checked, type } = evt.target;
         const valueToUse = type === "checkbox" ? checked : value;
         setFormValues({
-            class_id: props.class[0],
             ...formValues,
             [name]: valueToUse,
           });
@@ -115,7 +114,8 @@ function EditClassForm(props) {
     }     
 
     const submit = (e) => {
-      e.preventDefault()
+      e.preventDefault();
+      setFormValues({...formValues, class_id: props.class.currentClass})
       props.editClass(formValues)
       push('/dashboard')
     }
