@@ -5,7 +5,7 @@ import Login from './components/LoginForm';
 import {Route, Switch, BrowserRouter as Router} from 'react-router-dom'
 
 import AddClassForm from './components/AddClassForm';
-import { EditClassForm } from './components/EditClassForm';
+import  EditClassForm  from './components/EditClassForm';
 import ClientDashboard from './components/clientDashboard';
 import PrivateRoute from './utility/PrivateRoute'
 

@@ -2,6 +2,7 @@ import React from "react";
 import "../styles/classCard.css";
 import { connect } from 'react-redux'
 import { useHistory } from 'react-router-dom';
+import { setClass } from "../actions/classActions";
 
 function ClassCard(props) {
   const item = props.class;
@@ -13,6 +14,7 @@ function ClassCard(props) {
   }
 
   const editClassClick = () => {
+    props.setClass(item.class_id)
     push('/class/edit')
   }
 
@@ -50,4 +52,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps)(ClassCard)
+export default connect(mapStateToProps, { setClass })(ClassCard)

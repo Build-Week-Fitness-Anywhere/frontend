@@ -5,6 +5,11 @@ export const CLASS_SET = "CLASS_SET";
 export const CLASS_ADD = "CLASS_ADD";
 export const CLASS_DELETE = "CLASS_DELETE";
 export const CLASS_EDIT = "CLASS_EDIT";
+export const SET_CURRENT_CLASS = 'SET_CURRENT_CLASS'
+
+export const setClass = (id) => {
+    return({type:SET_CURRENT_CLASS, payload: id})
+}
 
 // const defaultData = [
 //     {
