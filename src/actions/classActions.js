@@ -72,9 +72,9 @@ const editClass = (item) => {
         const neoClass = {
             name: item.name,
             type: item.type,
-            start_time: item.time,
+            start_time: item.start_time,
             duration: item.duration,
-            level: item.intensity,
+            level: item.level,
             location: item.location,
             attendees: 0,
             max_size: 10
