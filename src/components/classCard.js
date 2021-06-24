@@ -5,7 +5,6 @@ import { useHistory } from 'react-router-dom';
 import { setClass } from "../actions/classActions";
 
 function ClassCard(props) {
-  console.log(props.class);
   const item = props.class;
 
   let { push } = useHistory()
