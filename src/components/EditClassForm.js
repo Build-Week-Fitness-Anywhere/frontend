@@ -39,6 +39,7 @@ const Input = styled.input`
 	margin-bottom: 0.5em;
     &:hover {
         background-image: linear-gradient(to bottom, #F2F2F2, #BF213E);
+    }
 `;
 const Button = styled.button`
     display:inline-block;
@@ -50,9 +51,10 @@ const Button = styled.button`
     width:150px;
     &:hover {
         background-image: linear-gradient(to bottom, #F2F2F2, #BF213E);
+    }
 `
 
-const initialFormValues = {
+/* const initialFormValues = {
     name: "Miyagi-Do Karate",
     date: "today",
     time: "sometime",
@@ -62,7 +64,7 @@ const initialFormValues = {
     intensity: "moderate",
     location: "Miyagi Dojo"    
 
-}
+} */
 
 const errorValues = {
     name: "",
@@ -78,7 +80,10 @@ const errorValues = {
 const initialDisabled = true;
 
 function EditClassForm(props) {
-    const [formValues, setFormValues] = useState(initialFormValues);
+    const currentClass = props.class.classList.filter((item) => {
+      return (item.class_id === props.class.currentClass);
+    });
+    const [formValues, setFormValues] = useState(currentClass[0]);
     const [errors, setErrors] = useState(errorValues);
     const [disabled, setDisabled] = useState(initialDisabled);
     let { push } = useHistory()
@@ -107,7 +112,6 @@ function EditClassForm(props) {
         const { name, value, checked, type } = evt.target;
         const valueToUse = type === "checkbox" ? checked : value;
         setFormValues({
-            class_id: props.class[0],
             ...formValues,
             [name]: valueToUse,
           });
@@ -115,15 +119,16 @@ function EditClassForm(props) {
     }     
 
     const submit = (e) => {
-      e.preventDefault()
-      props.editClass(formValues)
-      push('/dashboard')
+      e.preventDefault();
+      setFormValues({...formValues, class_id: props.class.currentClass})
+      props.editClass(formValues);
+      push("/dashboard");
     }
 
     return (
         <div>
           <BackGround>
-            <form id="edit-class-form" onSubmit={submit}>
+            <form id="edit-class-form" >
               <FormGroup>
                 <Label>
                   Class Name
@@ -136,23 +141,13 @@ function EditClassForm(props) {
                     ></Input>
                 </Label>
                 <Label>
-                    Date
+                    Date and Time
                     <Input
                       type="text"
-                      placeholder="Day of Class"
-                      value={formValues.date}
+                      placeholder="Day and Time of class"
+                      value={formValues.start_time}
                       onChange={handleChange}
-                      name="date"
-                    ></Input>
-              </Label>
-              <Label>
-                    Time
-                    <Input
-                      type="text"
-                      placeholder="Time of Class"
-                      value={formValues.time}
-                      onChange={handleChange}
-                      name="time"
+                      name="start_time"
                     ></Input>
               </Label>
               <Label>
@@ -163,16 +158,6 @@ function EditClassForm(props) {
                       value={formValues.duration}
                       onChange={handleChange}
                       name="duration"
-                    ></Input>
-              </Label>
-              <Label>
-                    Instructor
-                    <Input
-                      type="text"
-                      placeholder="Instructor"
-                      value={formValues.instructor}
-                      onChange={handleChange}
-                      name="instructor"
                     ></Input>
               </Label>
               <Label>
@@ -190,9 +175,9 @@ function EditClassForm(props) {
                     <Input
                       type="text"
                       placeholder="Intensity of Class"
-                      value={formValues.intensity}
+                      value={formValues.level}
                       onChange={handleChange}
-                      name="intensity"
+                      name="level"
                     ></Input>
               </Label>
               <Label>
@@ -205,7 +190,7 @@ function EditClassForm(props) {
                       name="location"
                     ></Input>
               </Label>
-              <Button disabled={disabled}>Edit Class</Button>
+              <Button disabled={disabled} onClick={submit}>Edit Class</Button>
               </FormGroup>
             </form>
     </BackGround>        

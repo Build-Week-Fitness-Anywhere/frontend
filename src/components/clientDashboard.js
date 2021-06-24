@@ -29,7 +29,7 @@ function ClientDashboard(props) {
   }
   
     useEffect(() => {
-    if (!props.class || props.class.length === 0) {
+    if (!props.class || props.class.classList.length === 0) {
       props.loadClass()
     } else {
       console.log(props.class);

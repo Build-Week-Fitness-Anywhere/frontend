@@ -1,21 +1,29 @@
 import { CLASS_ADD, CLASS_SET, SET_CURRENT_CLASS } from '../actions/classActions'
 
-const initialState = [];
+const initialState = {
+    currentClass: null,
+    classList: []
+};
 
 function classReducer(state = initialState, action) {
     switch(action.type) {
         case (CLASS_ADD):
-            return ([
+            return ({
                 ...state,
+                classList: [
+                ...state.classList,
                 action.payload
-            ])
+            ]})
         case (CLASS_SET):
-            return ([...action.payload])
+            return ({ 
+                ...state,
+                classList: [...action.payload]
+            })
         case (SET_CURRENT_CLASS):
-            return ([
-                action.payload,
-                ...state
-            ]) 
+            return ({
+                ...state,
+                currentClass: action.payload
+            }) 
         default:
             return state;
     }
