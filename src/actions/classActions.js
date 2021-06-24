@@ -76,8 +76,11 @@ const editClass = (item) => {
         }
         let newClasses = getState().class;
         
-       axiosWithAuth().put(`/api/classes/:class_id/${item.class_id}`, neoClass)
+        console.log(item.class_id);
+        const destString = "/api/classes/:class_id/" + item.class_id
+        axiosWithAuth().put(destString, neoClass)
             .then((resp) => {
+                console.log("response detected");
                 newClasses = newClasses.filter((thing) => {
                     return (thing.id !== item.id );
                 });
