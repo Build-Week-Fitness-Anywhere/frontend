@@ -4,8 +4,12 @@
         "Larouso",
         "Miyagi",
         "Smurfette",
+        "browserslist",
+        "compat",
+        "craco",
         "headlessui",
         "heroicons",
+        "tailwindcss",
         "webfonts"
     ]
 }

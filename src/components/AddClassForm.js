@@ -39,6 +39,7 @@ const Input = styled.input`
 	margin-bottom: 0.5em;
     &:hover {
         background-image: linear-gradient(to bottom, #F2F2F2, #BF213E);
+    }
 `;
 const Button = styled.button`
     display:inline-block;
@@ -50,6 +51,7 @@ const Button = styled.button`
     width:150px;
     &:hover {
         background-image: linear-gradient(to bottom, #F2F2F2, #BF213E);
+    }
 `
 
 const initialFormValues = {
@@ -57,7 +59,6 @@ const initialFormValues = {
     date: "",
     time: "",
     duration: "0",
-    instructor: "",
     type: "",
     intensity: "",
     location: ""    
@@ -68,7 +69,6 @@ const errorValues = {
     date: "",
     time: "",
     duration: "",
-    instructor: "",
     type: "",
     intensity: "",
     location: ""    
@@ -85,7 +85,7 @@ function AddClassForm(props) {
     const addClick = (evt) => {
         evt.preventDefault();
         props.addClass(formValues);
-        push("/instructor-dash");
+        push("/dashboard");
     }
 
     const checkSchema = (name, value) => {
@@ -172,19 +172,6 @@ function AddClassForm(props) {
                     value={formValues.duration}
                     onChange={handleChange}
                     name="duration"
-                    ></Input>
-                </Label>
-                </FormGroup>
-                <FormGroup>
-                {errorValues.instructor && <p>{errorValues.instructor}</p>}
-                <Label>
-                    Instructor
-                    <Input
-                    type="text"
-                    placeholder="Instructor"
-                    value={formValues.instructor}
-                    onChange={handleChange}
-                    name="instructor"
                     ></Input>
                 </Label>
                 </FormGroup>

@@ -13,9 +13,6 @@ export default yup.object().shape({
     duration: yup
     .number("duration in minutes")
     .required("Duration is required."),
-    instructor: yup
-    .string()
-    .required("Instructor is required."),
     type: yup
     .string("type string")
     .required("Exercise Type is required."),

@@ -44,28 +44,50 @@ export const CLASS_EDIT = "CLASS_EDIT";
 
 const addClass = (item) => {
     return ((dispatch) => {
-        item.classID = Date.now();
-        console.log(item);
-        axiosWithAuth.get("https://fittnesslambda.herokuapp.com/api/classes/", item)
+        const neoClass = {
+            name: item.name,
+            type: item.type,
+            start_time: item.time,
+            duration: item.duration,
+            level: item.intensity,
+            location: item.location,
+            attendees: 0,
+            max_size: 10
+        }
+       axiosWithAuth().post("/api/classes/", neoClass)
             .then((resp) => {
-                console.log(resp.data);
+                dispatch({type: CLASS_ADD, payload: resp.data});
             }).catch((err) => console.log(err));
     
-        dispatch({type: CLASS_ADD, payload: item})
         })
 }
 
 const editClass = (item) => {
     return ((dispatch, getState) => {
+        const neoClass = {
+            name: item.name,
+            type: item.type,
+            start_time: item.time,
+            duration: item.duration,
+            level: item.intensity,
+            location: item.location,
+            attendees: 0,
+            max_size: 10
+        }
         let newClasses = getState().class;
-        newClasses = newClasses.filter((thing) => {
-            return (thing.id !== item.id );
-        })
-        newClasses = [
-            ...newClasses,
-            item
-        ]
-        dispatch({type: CLASS_SET, payload: newClasses});
+        
+       axiosWithAuth().put(`/api/classes/:class_id/${item.class_id}`, neoClass)
+            .then((resp) => {
+                newClasses = newClasses.filter((thing) => {
+                    return (thing.id !== item.id );
+                });
+                newClasses = [
+                    ...newClasses,
+                    resp.data
+                ];
+                dispatch({type: CLASS_SET, payload: newClasses});            
+            }).catch((err) => console.log(err));
+        
     })
 }
 
